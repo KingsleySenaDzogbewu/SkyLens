@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../My projects/Weather"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "full-stack weather site"
+	}
+}
