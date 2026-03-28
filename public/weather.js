@@ -1,8 +1,10 @@
-const inputCity = document.querySelector('.input-city');
-
 let currentTempCelsius = 0; 
 let isCelsius = true;
 let cityTimeTimer = null;
+
+function getInputCity() {
+  return document.querySelector('.input-city');
+}
 
 function getStatusMessageEl() {
   return document.querySelector('.status-message');
@@ -55,8 +57,11 @@ function renderSearchHistory() {
     button.type = 'button';
     button.textContent = city;
     button.addEventListener('click', () => {
-      inputCity.value = city;
-      fetchWeatherInfo();
+      const inputCity = getInputCity();
+      if (inputCity) {
+        inputCity.value = city;
+        fetchWeatherInfo();
+      }
     });
     container.appendChild(button);
   });
@@ -187,17 +192,13 @@ function updateUI(weatherInfo) {
   const loader = document.getElementById('loader');
   if (loader) loader.classList.add('loader-hidden');
 
-  // Showing the main background with smooth blending and hide input header
+  // Showing the main background with smooth blending
   const background = document.querySelector('.background');
   if (background) {
     background.classList.remove('hidden');
     window.requestAnimationFrame(() => {
       background.classList.add('visible');
     });
-  }
-  const inputHeader = document.querySelector('.input-header');
-  if (inputHeader) {
-    inputHeader.classList.add('hidden');
   }
 
   // Update DOM
@@ -223,7 +224,7 @@ function updateUI(weatherInfo) {
 
 // --- FEATURE 1: Auto-Detect on Load ---
 window.onload = () => {
-  renderSearchHistory();
+  renderSearchHistory()
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(async (position) => {
@@ -295,6 +296,12 @@ window.addEventListener("load", () => {
 });
 
 function fetchWeatherInfo() {
+  const inputCity = getInputCity();
+  if (!inputCity) {
+    setStatusMessage('Input field not found', true);
+    return;
+  }
+  
   const city = inputCity.value.trim();
   if (!city) return alert('Please enter a city');
 
@@ -316,12 +323,18 @@ function fetchWeatherInfo() {
     });
 }
 
-document.querySelector('.search-icon-button').addEventListener('click', () => {
-  fetchWeatherInfo();
-});
-
-inputCity.addEventListener('keydown', (event) => {
-  if (event.key === 'Enter') {
+const searchButton = document.querySelector('.search-icon-button');
+if (searchButton) {
+  searchButton.addEventListener('click', () => {
     fetchWeatherInfo();
-  }
-});
+  });
+}
+
+const inputCityElement = getInputCity();
+if (inputCityElement) {
+  inputCityElement.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      fetchWeatherInfo();
+    }
+  });
+}
