@@ -1,4 +1,4 @@
-  const inputCity = document.querySelector('.input-city');
+const inputCity = document.querySelector('.input-city');
 
 let currentTempCelsius = 0; 
 let isCelsius = true;
@@ -98,14 +98,14 @@ async function fetchForecast(city) {
   }
 }
 
-function startCityTimeUpdater() { // Removed tzOffset parameter as we don't need it
+function startCityTimeUpdater() { // Removed tzOffset parameter 
   const lastUpdateEl = document.querySelector('.last-update');
   if (!lastUpdateEl) return;
 
   if (cityTimeTimer) clearInterval(cityTimeTimer);
   
   cityTimeTimer = setInterval(() => {
-    // 1. Just get the standard time from your browser/computer
+    
     const actualLocalTime = new Date().toLocaleString('en-US', {
       weekday: 'short',
       hour: '2-digit',
@@ -129,7 +129,7 @@ function stopCityTimeUpdater() {
 function updateUI(weatherInfo) {
   setStatusMessage('');
   
-  currentTempCelsius = weatherInfo.main.temp; // Save the raw number
+  currentTempCelsius = weatherInfo.main.temp; 
   displayTemp(); 
   const country = weatherInfo.sys.country;
   const cityName = weatherInfo.name;
@@ -155,10 +155,8 @@ function updateUI(weatherInfo) {
   const sunriseTime = new Date((weatherInfo.sys.sunrise + tzOffset) * 1000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
   const sunsetTime = new Date((weatherInfo.sys.sunset + tzOffset) * 1000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
   const feelsLike = weatherInfo.main.feels_like;
-
-
   
-    const currentTime = weatherInfo.dt;
+  const currentTime = weatherInfo.dt;
   const sunrise = weatherInfo.sys.sunrise;
   const sunset = weatherInfo.sys.sunset;
 
@@ -168,7 +166,6 @@ function updateUI(weatherInfo) {
   const dayVideo = '182288-868067168.mp4'; 
   const nightVideo = '100823-video-720.mp4';
 
-  // DEBUG: Check the values in your console (F12)
   console.log("Current:", currentTime, "Rise:", sunrise, "Set:", sunset);
 
   if (currentTime >= sunrise && currentTime < sunset) {
@@ -180,7 +177,6 @@ function updateUI(weatherInfo) {
       }
   } else {
       console.log("Setting Night Video");
-      // Use getAttribute here too for a fair comparison!
       if (videoSource.getAttribute('src') !== nightVideo) {
           videoSource.setAttribute('src', nightVideo);
           videoElement.load();
@@ -188,12 +184,10 @@ function updateUI(weatherInfo) {
       }
   }
 
-  
-
   const loader = document.getElementById('loader');
   if (loader) loader.classList.add('loader-hidden');
 
-  // Show the main background with smooth blending and hide input header
+  // Showing the main background with smooth blending and hide input header
   const background = document.querySelector('.background');
   if (background) {
     background.classList.remove('hidden');
@@ -312,7 +306,7 @@ function fetchWeatherInfo() {
         return;
       }
 
-      // Keep UI mapping consistent with auto-detect path
+      
       updateUI(weatherInfo);
       fetchForecast(weatherInfo.name);
     })
@@ -331,5 +325,3 @@ inputCity.addEventListener('keydown', (event) => {
     fetchWeatherInfo();
   }
 });
-
-
