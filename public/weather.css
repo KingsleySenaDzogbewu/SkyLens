@@ -4,7 +4,6 @@ html, body {
   padding: 0;
 }
 
-
 body {
   background: linear-gradient(to bottom right, #a1c4fd, #c2e9fb);
 }
@@ -57,13 +56,11 @@ body {
   }
 }
 
-
 .hidden {
   opacity: 0;
   transform: translateY(15px);
   pointer-events: none;
 }
-
 
 #bg-video {
   position: fixed;
@@ -80,8 +77,6 @@ body {
   from { opacity: 0; }
   to { opacity: 1; }
 }
-
-
 
 #intro {
   position: fixed;
@@ -123,7 +118,6 @@ body {
   background: rgba(0,0,0,0.4);
   backdrop-filter: blur(5px);
 }
-
 
 .intro-content {
   position: absolute;
@@ -308,7 +302,6 @@ body {
   font-weight: bold;
   margin-bottom: 5px;
 }
-
 
 .feels-Like {
   margin: 8px auto;
