@@ -65,7 +65,6 @@ app.get('/weather-by-coords', async (req, res) => {
   }
 });
 
-
 app.get('/forecast', async (req, res) => {
   const city = req.query.city;
 
