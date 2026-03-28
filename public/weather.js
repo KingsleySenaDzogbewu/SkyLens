@@ -323,18 +323,23 @@ function fetchWeatherInfo() {
     });
 }
 
-const searchButton = document.querySelector('.search-icon-button');
-if (searchButton) {
-  searchButton.addEventListener('click', () => {
-    fetchWeatherInfo();
-  });
-}
+document.addEventListener("DOMContentLoaded", () => {
 
-const inputCityElement = getInputCity();
-if (inputCityElement) {
-  inputCityElement.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter') {
+  const searchButton = document.querySelector('.search-icon-button');
+  const inputCityElement = document.querySelector('.input-city');
+
+  if (searchButton) {
+    searchButton.addEventListener('click', () => {
       fetchWeatherInfo();
-    }
-  });
-}
+    });
+  }
+
+  if (inputCityElement) {
+    inputCityElement.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        fetchWeatherInfo();
+      }
+    });
+  }
+
+});
