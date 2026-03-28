@@ -229,7 +229,7 @@ function updateUI(weatherInfo) {
 
 // --- FEATURE 1: Auto-Detect on Load ---
 window.onload = () => {
-  renderSearchHistory();
+  renderSearchHistory()
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(async (position) => {
