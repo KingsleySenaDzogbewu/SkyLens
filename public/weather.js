@@ -130,7 +130,6 @@ function stopCityTimeUpdater() {
 }
 
 
-// This handles all the "putting data on the screen" logic
 function updateUI(weatherInfo) {
   setStatusMessage('');
   
@@ -222,7 +221,6 @@ function updateUI(weatherInfo) {
   saveRecentCity(cityName);
 }
 
-// --- FEATURE 1: Auto-Detect on Load ---
 window.onload = () => {
   renderSearchHistory()
 
@@ -238,7 +236,6 @@ window.onload = () => {
         
         if (response.ok) {
           updateUI(data); 
-          // NEW: This gets the forecast for your current city automatically!
           fetchForecast(data.name); 
         }
       } catch (error) {
@@ -268,8 +265,8 @@ function displayTemp() {
 }
 
 document.getElementById('convert-btn').addEventListener('click', () => {
-  isCelsius = !isCelsius; // Flip the switch
-  displayTemp(); // Update the screen
+  isCelsius = !isCelsius; // Flips the switch
+  displayTemp(); // Updates the screen
 });
 
 window.addEventListener("load", () => {
