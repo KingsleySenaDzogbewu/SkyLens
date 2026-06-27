@@ -191,7 +191,7 @@ function updateUI(weatherInfo) {
   const loader = document.getElementById('loader');
   if (loader) loader.classList.add('loader-hidden');
 
-  // Showing the main background with smooth blending
+  // Showing the main background
   const background = document.querySelector('.background');
   if (background) {
     background.classList.remove('hidden');
@@ -200,7 +200,7 @@ function updateUI(weatherInfo) {
     });
   }
 
-  // Update DOM
+  // Updates DOM
   document.querySelector('.country').textContent = country;
   document.querySelector('.city-name').textContent = cityName;
   document.querySelector('.temp').textContent = `${Math.round(temperature)}°C`;
